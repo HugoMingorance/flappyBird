@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6192889529082940273}
   - component: {fileID: 6728178783333855286}
   m_Layer: 0
-  m_Name: pipe (2)
+  m_Name: pipe(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 3674704437688739429}
   - component: {fileID: 5627498688991321444}
   m_Layer: 0
-  m_Name: pipe (1)
+  m_Name: pipe(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,3 +385,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  rangoY: 3
+  espacioEntrePipes: 5

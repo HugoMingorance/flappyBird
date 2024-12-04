@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 368652228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.24, y: -10, z: -0.102869116}
+  m_LocalPosition: {x: 5.24, y: -5, z: -0.102869116}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -169,8 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   columnPrefab: {fileID: 8491725195205506876, guid: 0840c72995e65ef4a82496967dcc5d5f, type: 3}
   intervaloSpawn: 2
-  posicionY: 0
-  posicionX: 10
 --- !u!1 &487550197
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +593,14 @@ PrefabInstance:
     - target: {fileID: 6918671958563039126, guid: 0840c72995e65ef4a82496967dcc5d5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470229662805971218, guid: 0840c72995e65ef4a82496967dcc5d5f, type: 3}
+      propertyPath: limiteInferior
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7470229662805971218, guid: 0840c72995e65ef4a82496967dcc5d5f, type: 3}
+      propertyPath: limiteSuperior
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8491725195205506876, guid: 0840c72995e65ef4a82496967dcc5d5f, type: 3}
       propertyPath: m_Name
