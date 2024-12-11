@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Goal
   - destroyer
+  - pipe
+  - gm
+  - clSpawner
+  - columns
   layers:
   - Default
   - TransparentFX
