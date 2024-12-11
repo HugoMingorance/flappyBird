@@ -18,7 +18,9 @@ public class ColumnScript : MonoBehaviour
     {
         // Mueve las columnas
         transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+        if(transform.position.x <= -5){
+            gameObject.SetActive(false);
+        }
     }
-
 
 }
