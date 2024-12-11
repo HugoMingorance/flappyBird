@@ -5,30 +5,27 @@ using UnityEngine;
 public class ColumnSpawner : MonoBehaviour
 {
     public GameObject columnPrefab; // Prefab de la columna
-    public float intervaloSpawn = 2f; // Tiempo entre apariciones de columnas
-    private float tiempoUltimoSpawn;
+    private float minHeight = 1.56f; // Altura mínima donde puede aparecer la columna
+    private float maxHeight = -1.3f;  // Altura máxima donde puede aparecer la columna
+    public float intervaloSpawn = -5.7f; // Tiempo entre apariciones de columnas
+
+    private float spawnX = 10f;  // Posición fija en X para las columnas
 
     // Start is called before the first frame update
     void Start()
     {
-        tiempoUltimoSpawn = Time.time; // Inicia el contador del tiempo para el primer spawn
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Verificamos si ha pasado el intervalo para hacer aparecer una nueva columna
-        if (Time.time - tiempoUltimoSpawn >= intervaloSpawn)
-        {
-            SpawnColumn(); // Instanciamos una nueva columna
-            tiempoUltimoSpawn = Time.time; // Reiniciamos el contador de tiempo
-        }
+        // Llama a la función que instanciará las columnas cada 'intervaloSpawn' segundos
+        InvokeRepeating("SpawnColumn", 0f, intervaloSpawn);
     }
 
     // Método para instanciar una nueva columna
     void SpawnColumn()
     {
-        // Instanciamos la columna en la misma posición que el prefab original
-        Instantiate(columnPrefab, columnPrefab.transform.position, Quaternion.identity);
+        // Calcula una posición aleatoria en el eje Y dentro del rango definido
+        float randomHeight = Random.Range(minHeight, maxHeight);
+
+        // Usa una posición fija en X y la altura aleatoria en Y
+        Vector3 spawnPosition = new Vector3(spawnX, randomHeight, 0);  // Usa spawnX para X y randomHeight para Y
+        Instantiate(columnPrefab, spawnPosition, Quaternion.identity);
     }
 }
