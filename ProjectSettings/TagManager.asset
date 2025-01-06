@@ -10,6 +10,8 @@ TagManager:
   - gm
   - clSpawner
   - columns
+  - celling
+  - ground
   layers:
   - Default
   - TransparentFX

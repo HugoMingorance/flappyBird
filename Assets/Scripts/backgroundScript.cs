@@ -8,6 +8,7 @@ public class BackgroundScript : MonoBehaviour
     public float anchoPantalla; // El ancho de la pantalla
 
     private Vector2 posicionOriginal;
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +20,26 @@ public class BackgroundScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Mueve el fondo hacia la izquierda
-        transform.Translate(Vector2.left * velocidad * Time.deltaTime);
-
-        // Cuando la imagen sale de la pantalla, se reposiciona
-        if (transform.position.x <= -anchoPantalla)
+        if (!gameOver)
         {
-            transform.position = new Vector2(transform.position.x + anchoPantalla * 2, transform.position.y);
+            // Mueve el fondo hacia la izquierda
+            transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+
+            // Cuando la imagen sale de la pantalla, se reposiciona
+            if (transform.position.x <= -anchoPantalla)
+            {
+                transform.position = new Vector2(transform.position.x + anchoPantalla * 2, transform.position.y);
+            }
         }
+    }
+
+    public void GameOver()
+    {
+        gameOver = true;
+    }
+
+    public void Restart()
+    {
+        gameOver = false;
     }
 }

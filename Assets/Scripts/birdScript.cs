@@ -8,32 +8,48 @@ public class birdScript : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject gm;
     private bool GameOver = false;
+    private bool gameStarted = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Obtenemos el componente Rigidbody2D del pájaro
         gm = GameObject.FindGameObjectWithTag("gm");
+        rb.isKinematic = true; // Hacemos que el pájaro no se mueva al inicio
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0 && !GameOver) // Si se toca la pantalla
+        if (!gameStarted && (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X)))
         {
-            rb.velocity = Vector2.up * fuerzaSalto; // Aplicamos fuerza hacia arriba al Rigidbody2D
+            gameStarted = true;
+            rb.isKinematic = false; // Permitimos que el pájaro se mueva
+        }
+
+        if (gameStarted && !GameOver)
+        {
+            if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X)) // Si se toca la pantalla
+            {
+                rb.velocity = Vector2.up * fuerzaSalto; // Aplicamos fuerza hacia arriba al Rigidbody2D
+            }
+
+            // Rotación del pájaro
+            float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("pipe") || collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("ceiling"))
         {
-            if (collision.gameObject.CompareTag("pipe"))
-            {
-                GameOver = true;
-                gm.gameObject.GetComponent<GameManager>().GameOver();
-                Debug.Log("Colisión con un pipe");
-            }
+            GameOver = true;
+            gm.gameObject.GetComponent<GameManager>().GameOver();
+            Debug.Log("Colisión con un pipe");
         }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Goal"))
