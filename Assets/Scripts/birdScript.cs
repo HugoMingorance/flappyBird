@@ -25,7 +25,7 @@ public class birdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameStarted && (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X)))
+        if (!gameStarted && Input.GetMouseButtonDown(0))
         {
             gameStarted = true;
             rb.isKinematic = false;  // Permitimos que el pájaro se mueva
@@ -33,7 +33,8 @@ public class birdScript : MonoBehaviour
 
         if (gameStarted && !GameOver)
         {
-            if (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X))  // Si se toca la pantalla
+            // Detectar un nuevo toque
+            if (Input.GetMouseButtonDown(0))
             {
                 rb.velocity = Vector2.up * fuerzaSalto;  // Aplicamos fuerza hacia arriba al Rigidbody2D
             }
