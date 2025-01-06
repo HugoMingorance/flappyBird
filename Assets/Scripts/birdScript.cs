@@ -45,7 +45,7 @@ public class birdScript : MonoBehaviour
         if (collision.gameObject.CompareTag("pipe") || collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("ceiling"))
         {
             GameOver = true;
-            gm.gameObject.GetComponent<GameManager>().GameOver();
+            gm.GetComponent<GameManager>().GameOver();
             Debug.Log("Colisión con un pipe");
         }
     }
@@ -54,7 +54,7 @@ public class birdScript : MonoBehaviour
     {
         if (other.CompareTag("Goal"))
         {
-            gm.gameObject.GetComponent<GameManager>().incrementScore();
+            gm.GetComponent<GameManager>().incrementScore();
             Debug.Log("Goal");
         }
     }

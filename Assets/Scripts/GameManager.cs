@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
 
     private bool gameStarted = false;
+    private bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,19 +38,21 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
 
+        if (gameOver && (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X)))
+        {
+            RestartGame();
+        }
+
         if (gameStarted)
         {
             scoreText.text = "Score: " + Score;
-        }
-        else if (gameOverText.gameObject.activeSelf && (Input.touchCount > 0 || Input.GetKeyDown(KeyCode.X)))
-        {
-            RestartGame();
         }
     }
 
     public void incrementScore()
     {
         Score++;
+        scoreText.text = "Score: " + Score;  // Asegúrate de actualizar el texto del puntaje
         Debug.Log(Score);
     }
 
@@ -74,6 +77,8 @@ public class GameManager : MonoBehaviour
         {
             background.GetComponent<BackgroundScript>().GameOver();
         }
+
+        gameOver = true;  // Activar el estado de Game Over
     }
 
     public void RestartGame()
