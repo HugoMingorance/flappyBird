@@ -62,8 +62,7 @@ public class birdScript : MonoBehaviour
             GameOver = true;
             gm.GetComponent<GameManager>().GameOver();
             animator.SetTrigger("dead");  // Activar el trigger de la animación "dead"
-            rb.velocity = Vector2.zero;  // Detener el movimiento del pájaro
-            rb.isKinematic = true;  // Hacer que el pájaro no se mueva más
+            rb.velocity = new Vector2(0, rb.velocity.y);  // Opcional: ajustar la velocidad horizontal a 0 para que no se desplace horizontalmente
             Debug.Log("Colisión con un pipe");
         }
     }
