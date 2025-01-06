@@ -6,6 +6,7 @@ public class birdScript : MonoBehaviour
 {
     private float fuerzaSalto = 3f;  // Fuerza que se aplicará al pájaro al tocar la pantalla
     private Rigidbody2D rb;
+    private Animator animator;  // Referencia al componente Animator
     public GameObject gm;
     private bool GameOver = false;
     private bool gameStarted = false;
@@ -18,8 +19,12 @@ public class birdScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();  // Obtenemos el componente Rigidbody2D del pájaro
+        animator = GetComponent<Animator>();  // Obtenemos el componente Animator
         gm = GameObject.FindGameObjectWithTag("gm");
         rb.isKinematic = true;  // Hacemos que el pájaro no se mueva al inicio
+
+        // Asegurarse de que la animación "bird" esté activa al inicio
+        animator.Play("bird");
     }
 
     // Update is called once per frame
@@ -56,6 +61,9 @@ public class birdScript : MonoBehaviour
         {
             GameOver = true;
             gm.GetComponent<GameManager>().GameOver();
+            animator.SetTrigger("dead");  // Activar el trigger de la animación "dead"
+            rb.velocity = Vector2.zero;  // Detener el movimiento del pájaro
+            rb.isKinematic = true;  // Hacer que el pájaro no se mueva más
             Debug.Log("Colisión con un pipe");
         }
     }
