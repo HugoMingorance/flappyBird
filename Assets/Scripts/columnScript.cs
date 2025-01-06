@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ColumnScript : MonoBehaviour
 {
-    public float velocidad = 5f; // Velocidad del movimiento
+    private float velocidad = 2f; // Velocidad del movimiento
     private bool gameOver = false;
 
     // Update is called once per frame

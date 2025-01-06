@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class birdScript : MonoBehaviour
 {
-    private float fuerzaSalto = 5f; // Fuerza que se aplicará al pájaro al tocar la pantalla
+    private float fuerzaSalto = 3f; // Fuerza que se aplicará al pájaro al tocar la pantalla
     private Rigidbody2D rb;
     public GameObject gm;
     private bool GameOver = false;
