@@ -12,6 +12,8 @@ TagManager:
   - columns
   - celling
   - ground
+  - bird
+  - background
   layers:
   - Default
   - TransparentFX

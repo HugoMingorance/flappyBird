@@ -78,26 +78,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        // Reiniciar variables y objetos
-        Score = 0;
-        gameStarted = false;
-        gameOverText.gameObject.SetActive(false);
-        menuText.gameObject.SetActive(true);
-        clSpawner.GetComponent<ColumnSpawner>().Restart();
-        foreach (GameObject background in GameObject.FindGameObjectsWithTag("background"))
-        {
-            background.GetComponent<BackgroundScript>().Restart();
-        }
-        // Destruir columnas existentes
-        foreach (GameObject column in GameObject.FindGameObjectsWithTag("columns"))
-        {
-            Destroy(column);
-        }
-        // Resetear posición del pájaro
-        GameObject bird = GameObject.FindGameObjectWithTag("bird");
-        bird.transform.position = new Vector3(0, 0, 0);
-        bird.GetComponent<Rigidbody2D>().isKinematic = true;
-        bird.transform.rotation = Quaternion.identity;
+        // Recargar la escena actual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void StartGame()
