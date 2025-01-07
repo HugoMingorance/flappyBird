@@ -42,6 +42,7 @@ public class birdScript : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 rb.velocity = Vector2.up * fuerzaSalto;  // Aplicamos fuerza hacia arriba al Rigidbody2D
+                gm.GetComponent<GameManager>().PlaySound("jump");  // Reproducir sonido de salto
             }
 
             // Calcular el ángulo basado en la velocidad vertical
