@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class ColumnScript : MonoBehaviour
 {
-    private float velocidad = 2f; // Velocidad del movimiento
+    private float velocidad = 2f; // Velocitat del moviment
     private bool gameOver = false;
 
-    // Update is called once per frame
+    // Mètode Update: s'executa a cada frame
     void Update()
     {
         if (!gameOver)
         {
-            // Mueve las columnas
+            // Mou les columnes
             transform.Translate(Vector2.left * velocidad * Time.deltaTime);
+
+            // Destrueix l'objecte columna quan surt de la pantalla
             if (transform.position.x <= -5)
             {
                 Destroy(gameObject);
@@ -21,6 +23,7 @@ public class ColumnScript : MonoBehaviour
         }
     }
 
+    // Mètode GameOver: atura el moviment de les columnes
     public void GameOver()
     {
         gameOver = true;

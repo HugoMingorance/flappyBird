@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class BackgroundScript : MonoBehaviour
 {
-    private float velocidad = 2f; // Velocidad del movimiento
-    public float anchoPantalla; // El ancho de la pantalla
+    private float velocidad = 2f; // Velocitat del moviment
+    public float anchoPantalla; // Amplada de la pantalla
 
-    private Vector2 posicionOriginal;
-    private bool gameOver = false;
+    private Vector2 posicionOriginal; // Posició original del fons
+    private bool gameOver = false; // Indica si el joc ha acabat
 
-    // Start is called before the first frame update
+    // Mètode Start: s'executa al començament del joc
     void Start()
     {
-        anchoPantalla = GetComponent<SpriteRenderer>().bounds.size.x; // Obtiene el ancho de la imagen
-        posicionOriginal = transform.position; // Guarda la posición inicial
+        anchoPantalla = GetComponent<SpriteRenderer>().bounds.size.x; // Obté l'amplada de la imatge
+        posicionOriginal = transform.position; // Guarda la posició inicial
     }
 
-    // Update is called once per frame
+    // Mètode Update: s'executa a cada frame
     void Update()
     {
         if (!gameOver)
         {
-            // Mueve el fondo hacia la izquierda
+            // Mou el fons cap a l'esquerra
             transform.Translate(Vector2.left * velocidad * Time.deltaTime);
 
-            // Cuando la imagen sale de la pantalla, se reposiciona
+            // Quan la imatge surt de la pantalla, es reposiciona
             if (transform.position.x <= -anchoPantalla)
             {
                 transform.position = new Vector2(transform.position.x + anchoPantalla * 2, transform.position.y);
@@ -33,11 +33,13 @@ public class BackgroundScript : MonoBehaviour
         }
     }
 
+    // Mètode GameOver: gestiona l'estat de Game Over
     public void GameOver()
     {
-        gameOver = true;
+        gameOver = true; // Atura el moviment del fons
     }
 
+    // Mètode Restart: reinicia el moviment del fons
     public void Restart()
     {
         gameOver = false;
